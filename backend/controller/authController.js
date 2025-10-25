@@ -22,13 +22,13 @@ const register = async (req, res) => {
       return res.status(404).json({ message: " Email already exist" });
 
     const insertData =
-      "INSERT INTO users(name, email, password) VALUES (?,?,?)";
+      "INSERT INTO users(name, email, password ,role) VALUES (?,?,?,?)";
 
     //hash password
 
     const hashPassword = await bycrypt.hash(password, 10);
 
-    await db.promise().query(insertData, [name, email, hashPassword]);
+    await db.promise().query(insertData, [name, email, hashPassword, "user"]);
 
     res.status(201).json({ message: "User successfully added" });
   } catch (err) {
