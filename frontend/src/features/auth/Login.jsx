@@ -26,6 +26,12 @@ const login = () => {
     }
   };
 
+  useEffect(() => {
+    if (user) {
+      navigate("/dashboard", { replace: true });
+    }
+  }, [user, navigate]);
+
   console.log("user data from main auth", user);
 
   return (

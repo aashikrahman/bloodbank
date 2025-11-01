@@ -3,10 +3,10 @@ import { AuthContext } from "../../Context/AuthContext";
 import { Navigate } from "react-router";
 
 const ProtectedRoute = ({ childern, adminOnly }) => {
-  const { user , loading} = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
 
-  if(loading) return <p>!loading</p>
-  if (!user) return <Navigate to="/" />;
+  if (loading) return <p>!loading</p>;
+  if (!user) return <Navigate to="/" replace />;
   if (adminOnly && !user.role === "admin")
     return <Navigate to="/profile" replace />;
 
